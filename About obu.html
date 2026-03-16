@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oda Bultum University - Profile</title>
+  
+  <!-- Font Awesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-green: #1b5e20;
+      --secondary-green: #2e7d32;
+      --accent-gold: #FFD700;
+      --dark-bg: #222;
+      --light-bg: #f8f8f6;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Noto Serif', serif;
+      background-color: var(--light-bg);
+      color: #333;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+    
+    /* HEADER STYLES */
+    header {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      color: white;
+      padding: 30px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+    
+    .logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 3px solid green;
+      box-shadow: 0 0 0 4px var(--accent-gold);
+      transition: transform 0.4s ease;
+      z-index: 1;
+    }
+    
+    .header-texts {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+    }
+    
+    .header-texts h1 {
+      font-size: 26px;
+      margin: 0;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+      position: relative;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    /* CORRECTED NAVIGATION STYLES */
+    .navbar {
+      background-color: var(--dark-bg);
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .nav-container {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+    
+    .nav-item {
+      position: relative;
+      flex: 1;
+      text-align: center;
+    }
+    
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      padding: 16px 20px;
+      display: block;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      background-color: var(--primary-green);
+    }
+    
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--accent-gold);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 80%;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #333;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .dropdown-item {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border-bottom: 1px solid #444;
+    }
+    
+    .dropdown-item:hover {
+      background-color: var(--primary-green);
+      padding-left: 25px;
+    }
+    
+    /* UNIVERSITY PROFILE SECTION */
+    .university-profile {
+      max-width: 1300px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-size: 36px;
+      color: var(--primary-green);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-header h2::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-green), var(--accent-gold), var(--primary-green));
+      border-radius: 3px;
+    }
+    
+    .section-header p {
+      color: #555;
+      font-size: 20px;
+      max-width: 800px;
+      margin: 20px auto 0;
+      line-height: 1.7;
+    }
+    
+    /* PROFILE CARDS */
+    .profile-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+    
+    .profile-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(27,94,32,0.9) 0%, rgba(46,125,50,0.9) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+    
+    .profile-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .profile-card:hover::before {
+      opacity: 1;
+    }
+    
+    .profile-card:hover .card-content {
+      color: white;
+    }
+    
+    .profile-card:hover .card-content h3 {
+      color: var(--accent-gold);
+    }
+    
+    .profile-card:hover .card-icon {
+      background: var(--accent-gold);
+      color: var(--primary-green);
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    .card-header {
+      padding: 25px 30px;
+      background: var(--primary-green);
+      color: white;
+      position: relative;
+    }
+    
+    .card-icon {
+      position: absolute;
+      top: -30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: var(--primary-green);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+    }
+    
+    .card-header h3 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.8px;
+    }
+    
+    .card-content {
+      padding: 30px;
+      transition: color 0.4s ease;
+    }
+    
+    .card-content p {
+      margin: 0 0 20px;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+    
+    .card-content ul {
+      margin: 0;
+      padding: 0 0 0 20px;
+    }
+    
+    .card-content ul li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .card-content ul li::before {
+      content: "•";
+      color: var(--primary-green);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+      position: absolute;
+      left: 0;
+    }
+    
+    .profile-card:hover .card-content ul li::before {
+      color: var(--accent-gold);
+    }
+    
+    /* COLLEGES & DEPARTMENTS STYLING */
+    .department-list {
+      columns: 2;
+      column-gap: 30px;
+      margin-top: 20px;
+    }
+    
+    .department-list li {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 25px;
+      transition: all 0.3s ease;
+    }
+    
+    .profile-card:hover .department-list li {
+      color: white;
+    }
+    
+    .department-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--primary-green);
+      transition: all 0.3s ease;
+    }
+    
+    .profile-card:hover .department-list li::before {
+      color: var(--accent-gold);
+      transform: translateX(5px);
+    }
+    
+    /* CORRECTED FOOTER STYLES */
+    .footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      color: white;
+      padding: 60px 0 30px;
+      margin-top: 80px;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-col {
+      margin-bottom: 30px;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .footer-logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-gold);
+    }
+    
+    .footer-logo-text h3 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent-gold);
+    }
+    
+    .footer-logo-text p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .footer-col h4 {
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      font-size: 18px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h4::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary-green);
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: #ddd;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-green);
+      transform: translateX(5px);
+    }
+    
+    .footer-contact li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .footer-contact i {
+      margin-right: 10px;
+      color: var(--accent-gold);
+      margin-top: 3px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary-green);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .copyright {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .department-list {
+        columns: 1;
+      }
+      
+      .nav-menu {
+        flex-direction: column;
+      }
+      
+      .nav-item {
+        text-align: left;
+      }
+      
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        box-shadow: none;
+      }
+      
+      .nav-item:hover .dropdown-menu {
+        display: block;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .profile-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-header h2 {
+        font-size: 30px;
+      }
+      
+      .section-header p {
+        font-size: 18px;
+      }
+      
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-texts">
+      <h1>Oda Bultum University</h1>
+      <img src="logo.jpg" alt="Oda Bultum University Logo" class="logo">
+      <h1>Academic Profile</h1>
+    </div>
+  </header>
+
+  <!-- CORRECTED NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Home</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item">About OBU</a></li>
+            <li><a href="#" class="dropdown-item">University Profile</a></li>
+            <li><a href="index.html" target="_blank" class="dropdown-item">Main Website</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Academics</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item">Colleges</a></li>
+            <li><a href="#" class="dropdown-item">Departments</a></li>
+            <li><a href="#" class="dropdown-item">Programs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Admission</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item">Undergraduate</a></li>
+            <li><a href="#" class="dropdown-item">Graduate</a></li>
+            <li><a href="#" class="dropdown-item">Requirements</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Research</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item">Research Centers</a></li>
+            <li><a href="#" class="dropdown-item">Publications</a></li>
+            <li><a href="#" class="dropdown-item">Collaborations</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- UNIVERSITY PROFILE SECTION -->
+  <section class="university-profile">
+    <div class="section-header">
+      <h2>Oda Bultum University Profile</h2>
+      <p>Discover the academic excellence and institutional structure of one of Ethiopia's premier higher education institutions</p>
+    </div>
+    
+    <div class="profile-container">
+      <!-- Establishment Card -->
+      <div class="profile-card">
+        <div class="card-header">
+          <h3>University Establishment</h3>
+          <div class="card-icon">
+            <i class="fas fa-landmark"></i>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Oda Bultum University was established in 2015 E.C. (2022/23 G.C.) as part of Ethiopia's ambitious higher education expansion program. Located in Chiro, West Hararghe Zone of Oromia Regional State, the university was founded to serve as a center of excellence for education, research, and community service in eastern Ethiopia.</p>
+          <p>The university is named after the renowned Oda Bultum, a historical figure who played significant roles in the resistance against foreign occupation. This namesake reflects the institution's commitment to cultivating leadership and preserving cultural heritage.</p>
+          <p>Key establishment facts:</p>
+          <ul>
+            <li>Founded: 2015 E.C. (2022/23 G.C.)</li>
+            <li>Location: Chiro, West Hararghe Zone, Oromia</li>
+            <li>Initial student intake: 1,200 students</li>
+            <li>First programs: 8 undergraduate programs</li>
+            <li>Current student population: Over 5,000</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Colleges Card -->
+      <div class="profile-card">
+        <div class="card-header">
+          <h3>Colleges & Schools</h3>
+          <div class="card-icon">
+            <i class="fas fa-university"></i>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Oda Bultum University is organized into several colleges and schools, each focusing on specific academic disciplines while promoting interdisciplinary collaboration. This structure enables comprehensive education and specialized research across diverse fields.</p>
+          <p>The university's academic structure reflects Ethiopia's development priorities while maintaining international academic standards. Each college is led by a dean and has its own academic and administrative offices.</p>
+          <p>Current colleges include:</p>
+          <ul class="department-list">
+            <li>College of Natural and Computational Sciences</li>
+            <li>College of Social Sciences and Humanities</li>
+            <li>College of Business and Economics</li>
+            <li>College of Agriculture and Environmental Sciences</li>
+            <li>College of Health Sciences</li>
+            <li>College of Engineering and Technology</li>
+            <li>School of Law</li>
+            <li>School of Education and Behavioral Sciences</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Departments Card -->
+      <div class="profile-card">
+        <div class="card-header">
+          <h3>Academic Departments</h3>
+          <div class="card-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Oda Bultum University houses numerous academic departments that deliver specialized programs aligned with national development goals and global academic standards. These departments serve as the primary academic units responsible for teaching, research, and community engagement.</p>
+          <p>The university continuously evaluates and expands its departments to meet emerging needs in Ethiopia's job market and research landscape.</p>
+          <p>Key departments across colleges:</p>
+          <ul class="department-list">
+            <li>Department of Computer Science</li>
+            <li>Department of Biology</li>
+            <li>Department of Chemistry</li>
+            <li>Department of Mathematics</li>
+            <li>Department of Physics</li>
+            <li>Department of Economics</li>
+            <li>Department of Accounting</li>
+            <li>Department of Management</li>
+            <li>Department of Agriculture</li>
+            <li>Department of Plant Science</li>
+            <li>Department of Nursing</li>
+            <li>Department of Public Health</li>
+            <li>Department of Civil Engineering</li>
+            <li>Department of Electrical Engineering</li>
+            <li>Department of Law</li>
+            <li>Department of Psychology</li>
+            <li>Department of English Language</li>
+            <li>Department of Oromo Language</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORRECTED FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="logo.jpg" alt="OBU Logo">
+          <div class="footer-logo-text">
+            <h3>Oda Bultum University</h3>
+            <p>Committed to excellence in education, research, and community service</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">University Profile</a></li>
+          <li><a href="#">Academic Calendar</a></li>
+          <li><a href="#">Research Portal</a></li>
+          <li><a href="https://obu.edu.et" target="_blank">Main Website</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Academic</h4>
+        <ul class="footer-links">
+          <li><a href="#">Undergraduate</a></li>
+          <li><a href="#">Graduate</a></li>
+          <li><a href="#">Course Catalog</a></li>
+          <li><a href="#">E-Learning</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><i class="fas fa-map-marker-alt"></i> Chiro, West Hararghe, Ethiopia</li>
+          <li><i class="fas fa-phone"></i> +251 XXX XXX XXX</li>
+          <li><i class="fas fa-envelope"></i> info@obu.edu.et</li>
+          <li><i class="fas fa-clock"></i> Mon-Fri: 8:30AM - 5:30PM</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="copyright">&copy; 2025 Oda Bultum University. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
